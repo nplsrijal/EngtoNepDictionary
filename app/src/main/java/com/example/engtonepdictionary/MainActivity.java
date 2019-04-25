@@ -11,12 +11,16 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private ListView Lview;
+
+
 
     public static final String meaning[] = {
             "k cha?", "What's up?",
