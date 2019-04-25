@@ -11,7 +11,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,15 +33,33 @@ public class MainActivity extends AppCompatActivity {
     };
     private Map<String, String> dictionary;
 
+    private void readFromFile(){
+
+        try {
+            FileInputStream fos = openFileInput("Words.txt");
+            InputStreamReader isr=new InputStreamReader(fos);
+            BufferedReader br=new BufferedReader(isr);
+            String line="";
+            while ((line=br.readLine())!=null){
+                String[] parts=line.split("->");
+                dictionary.put(parts[0],parts[1]);
+            }
+        }  catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ListView Lview = findViewById(R.id.Lview);
 
         dictionary = new HashMap<>();
-        for (int i = 0; i < meaning.length; i += 2) {
-            dictionary.put(meaning[i], meaning[i + 1]);
-        }
+//        for (int i = 0; i < meaning.length; i += 2) {
+//            dictionary.put(meaning[i], meaning[i + 1]);
+//        }
+        readFromFile();
         ArrayAdapter meaningAdapter = new ArrayAdapter(
                 this, android.R.layout.simple_list_item_1,
                 new ArrayList(dictionary.keySet())
