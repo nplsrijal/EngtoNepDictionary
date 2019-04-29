@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class another extends AppCompatActivity {
+public class AnotherActivity extends AppCompatActivity {
     private TextView tvout;
     private Button btnback;
 
@@ -17,7 +17,7 @@ public class another extends AppCompatActivity {
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(another.this,MainActivity.class);
+                Intent intent = new Intent(AnotherActivity.this,MainActivity.class);
                 startActivity(intent);
             }
         });

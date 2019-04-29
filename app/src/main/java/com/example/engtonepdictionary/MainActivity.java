@@ -4,16 +4,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -70,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String word = parent.getItemAtPosition(position).toString();
                 String mean = dictionary.get(word);
-                Intent intent = new Intent(MainActivity.this, another.class);
+                Intent intent = new Intent(MainActivity.this, AnotherActivity.class);
                 intent.putExtra("meaning", mean);
                 startActivity(intent);
                 //Toast.makeText(getApplicationContext(),mean.toString(),Toast.LENGTH_LONG).show();

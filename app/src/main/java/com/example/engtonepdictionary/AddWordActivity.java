@@ -1,5 +1,6 @@
 package com.example.engtonepdictionary;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,8 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.PrintStream;
+
+import helper.MyHelper;
 
 public class AddWordActivity extends AppCompatActivity {
 EditText txtword,txtmeaning;
@@ -23,10 +26,22 @@ Button btnsave;
         txtmeaning=findViewById(R.id.txtmeaning);
         btnsave=findViewById(R.id.btnsaveword);
 
+        final MyHelper myHelper=new MyHelper(this);
+        final SQLiteDatabase db=myHelper.getWritableDatabase();
+
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save();
+               // save();
+
+                //now using sqlite db to insert
+                if(myHelper.InsertData(txtword.getText().toString(),txtmeaning.getText().toString(),db))
+                {
+                    Toast.makeText(AddWordActivity.this,"Successful", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(AddWordActivity.this,"Error", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
 
